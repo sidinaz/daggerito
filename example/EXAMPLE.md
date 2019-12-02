@@ -1,6 +1,5 @@
 <img src="https://raw.githubusercontent.com/sidinaz/daggerito/master/documentation/images/daggerito_collaboration_diagram.png" width="100%" />  
 
-
 ```dart
 import 'package:flutter_test/flutter_test.dart';
 
@@ -52,8 +51,8 @@ class H1 {
     assert(model4.description != model5.description);
   }
 }
-```
-##Example
-[Example](https://github.com/sidinaz/daggerito/tree/master/example/EXAMPLE.md)  
+```  
+
+## Example
 [Daggerito tests](https://github.com/sidinaz/daggerito/tree/master/test/example_test.dart)  
 [Daggerito in usage (Routex app)](https://github.com/sidinaz/routex)  

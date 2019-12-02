@@ -1,9 +1,8 @@
 name: daggerito
-description: A new Flutter package project.
-version: 0.0.1
-author:
-homepage:
-
+description: IoC container with Dagger like abstractions (dependency injection with Components, SubComponents, Modules), supports components collaboration, singletons, tagging.
+version: 1.0.0
+author: Siddik Nazdrajic <s.nazdrajic@gmail.com>
+homepage: https://github.com/sidinaz/daggerito
 environment:
   sdk: ">=2.6.0 <3.0.0"
 
