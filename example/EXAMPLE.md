@@ -53,3 +53,7 @@ class H1 {
   }
 }
 ```
+##Example
+[Example](https://github.com/sidinaz/daggerito/tree/master/example/EXAMPLE.md)  
+[Daggerito tests](https://github.com/sidinaz/daggerito/tree/master/test/example_test.dart)  
+[Daggerito in usage (Routex app)](https://github.com/sidinaz/routex)  
