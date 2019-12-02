@@ -1,12 +1,11 @@
 import 'dependency_container.dart';
 
-/// Signature for a builder which creates an object of type [T].
 typedef T Factory<T>(DependencyContainer container);
 
 class Definition<T> {
   Definition.instance(this.object)
-    : instanceBuilder = null,
-      _oneTime = false;
+      : instanceBuilder = null,
+        _oneTime = false;
 
   Definition.factory(this.instanceBuilder) : _oneTime = false;
 
