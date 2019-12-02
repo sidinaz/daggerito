@@ -1,7 +1,6 @@
 import 'package:daggerito/daggerito.dart';
 
 import '../dependency_container.dart';
-import '../resolve.dart';
 
 abstract class Component {
   final DependencyContainer container = DependencyContainer();
