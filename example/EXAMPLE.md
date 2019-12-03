@@ -21,7 +21,6 @@ void main() {
   });
 }
 ```
-
 ```dart
 class HModule implements Module {
   @override
@@ -31,8 +30,8 @@ class HModule implements Module {
   }
 }
 
-class DComponent extends SubComponent {
-  DComponent(
+class DSubComponent extends SubComponent {
+  DSubComponent(
     List<Component> components,
     List<Module> modules,
   ) : super(components, modules: modules);
@@ -52,7 +51,7 @@ class H1 {
   }
 }
 ```  
-
 ## Example
-[Daggerito tests](https://github.com/sidinaz/daggerito/tree/master/test/example_test.dart)  
-[Daggerito in usage (Routex app)](https://github.com/sidinaz/routex)  
+[Basic container test](https://github.com/sidinaz/daggerito/tree/master/test/container_test.dart)  
+[Components collaboration test](https://github.com/sidinaz/daggerito/tree/master/test/example_test.dart)  
+[Daggerito in usage (Routex app)](https://github.com/sidinaz/routex) 
