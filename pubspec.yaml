@@ -1,6 +1,6 @@
 name: daggerito
 description: IoC container with Dagger like abstractions (dependency injection with Components, SubComponents, Modules), supports components collaboration, singletons, tagging.
-version: 1.0.3
+version: 1.0.4
 author: Siddik Nazdrajic <s.nazdrajic@gmail.com>
 homepage: https://github.com/sidinaz/daggerito
 environment:
