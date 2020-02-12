@@ -1,0 +1,52 @@
+CREATE TABLE locales(
+id TEXT NOT NULL PRIMARY KEY,
+description TEXT
+) as LocaleDB;
+
+CREATE TABLE users(
+username TEXT PRIMARY KEY,
+theme INTEGER NOT NULL DEFAULT 1 REFERENCES themes(id),
+locale TEXT REFERENCES locales(id),
+platform TEXT
+) as UserDB;
+
+CREATE TABLE layouts(
+username TEXT PRIMARY KEY REFERENCES users(username),
+main_layout INTEGER DEFAULT 1
+) as LayoutDB;
+
+CREATE TABLE themes(
+id INTEGER NOT NULL PRIMARY KEY,
+description TEXT NOT NULL
+) as ThemeDB;
+
+CREATE TABLE books(
+id INT NOT NULL PRIMARY KEY AUTOINCREMENT,
+title TEXT,
+isbn TEXT,
+description TEXT,
+updated_time DATETIME NOT NULL,
+user TEXT NOT NULL REFERENCES users(username)
+) as BookDB;
+
+createUser: insert into users(username) values (:username);
+createLayout: insert into layouts(username) values (:username);
+updateUserInfo: update users set theme = :theme, locale = :locale, platform = :platform where username = :username;
+updateUserLocale: update users set locale = :locale where username = :username;
+updateUserTheme: update users set theme = :theme where username = :username;
+updateUserLayout: update layouts set main_layout = :main_layout where username = :username;
+getUser: select * from users where username = :username;
+getUserLayout: select * from layouts where username = :username;
+getThemeById: select * from themes where id = :id;
+getThemes: select * from themes;
+getLocaleById: select * from locales where id = :id;
+getLocales: select * from locales;
+getBook: select * from books where id = :id;
+getBooks: select * from books where user = :user order by updated_time desc;
+getUsers: select * from users;
+createBook: insert into books(title, isbn, description, updated_time, user) values(:title, :isbn, :description, :updated_time, :user);
+updateBook: update books set title = :title, isbn = :isbn, description = :description, updated_time = :updated_time where id = :id;
+deleteBookById: delete from books where id = :id;
+deleteUser: delete from users where username = :username;
+deleteLayout: delete from layouts where username = :username;
+deleteUserBooks: delete from books where user = :user;

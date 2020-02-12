@@ -1,3 +1,5 @@
+## 1.0.5
+* Component specific configuration
 ## 1.0.4
 * Additional comments and code formatting
 ## 1.0.3

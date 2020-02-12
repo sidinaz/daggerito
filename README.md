@@ -60,4 +60,22 @@ class H1 {
     assert(model4.description != model5.description);
   }
 }
-```
+```  
+### Configuration 
+Ignore assertion errors for unregistered types
+```dart
+// Globally  
+Daggerito.configure(silent: true);
+
+// or
+// Component specific
+  AppComponent._({
+    @required SharedPreferences sharedPreferences,
+  }) : super(
+          modules: [
+            CommonModule(sharedPreferences),
+            PublicModule(),
+          ],
+          silent: true,
+        )
+```  
