@@ -26,7 +26,7 @@ class DebugWidget extends StatelessWidget {
             child: ListTile(
               title: Text("BooksComponent"),
               subtitle: Text(Messages.current.numberOfInitializations),
-              trailing: Text("${BooksComponent.counter}"),
+              trailing: Text("${BookComponent.counter}"),
             ),
           ),
         ],

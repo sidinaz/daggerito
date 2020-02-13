@@ -2,8 +2,8 @@ import 'package:example/app/database/database.dart';
 import 'package:example/app/locale/i18n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:routex/routex.dart';
 import 'package:kohana/kohana.dart';
+import 'package:routex/routex.dart';
 
 import '../data/view_model.dart';
 

@@ -6,7 +6,7 @@ import 'package:routex/routex.dart';
 import 'package:kohana/kohana.dart';
 import './view/view.dart';
 
-class PublicController extends BaseController {
+class PublicController extends Controller {
   @override
   void bindRouter(Router router) {
     router.route("/public/").handler(mainHandler);

@@ -4,8 +4,8 @@ import 'package:example/app/theme/platform_theme.dart';
 import 'package:example/features/debug/view/user_info_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:routex/routex.dart';
 import 'package:kohana/kohana.dart';
+import 'package:routex/routex.dart';
 
 import '../data/sink.dart';
 
@@ -102,7 +102,8 @@ class HomeViewDrawer extends BaseView {
                       ),
                       onTap: () {
                         pop(context);
-                        EventBus().push(AppEvent(AppEventType.LOG_OUT));
+                        EventBus()
+                            .push(AppEvent(AppEventType.LOG_OUT));
                       },
                     ),
                   ],
@@ -197,15 +198,12 @@ class HomeViewDrawer extends BaseView {
     }
   }
 
-  Color buttonColor(
-    BuildContext context,
-    [bool selected = false]
-  ) =>
+  Color buttonColor(BuildContext context, [bool selected = false]) =>
       selected ? Theme.of(context).primaryColor : null;
 
   Widget buildHeader(BuildContext context) => GestureDetector(
-    onTap: () => userInfoAlert.show(context),
-    child: Container(
+        onTap: () => userInfoAlert.show(context),
+        child: Container(
           height: 75,
           child: Align(
             alignment: Alignment.bottomCenter,
@@ -215,5 +213,5 @@ class HomeViewDrawer extends BaseView {
             ),
           ),
         ),
-  );
+      );
 }

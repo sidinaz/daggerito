@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:routex/routex.dart';
 import 'package:kohana/kohana.dart';
 
-class SettingsController extends BaseController{
+class SettingsController extends Controller{
   @override
   void bindRouter(Router router) {
     router.route("/settings/").handler(indexHandler);

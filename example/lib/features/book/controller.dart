@@ -7,7 +7,7 @@ import 'package:routex/routex.dart';
 import 'package:kohana/kohana.dart';
 import './view/view.dart';
 
-class BooksController extends BaseController {
+class BooksController extends Controller {
   @override
   void bindRouter(Router router) {
     router.route("/books/").handler(mainHandler);

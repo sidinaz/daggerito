@@ -1,5 +1,5 @@
 import 'package:example/app.dart';
-import 'package:example/app/bootstrap/titanium_app.dart';
+import 'package:example/app/bootstrap/route_info.dart';
 import 'package:flutter/material.dart';
 
 void main() {

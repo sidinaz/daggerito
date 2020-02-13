@@ -4,10 +4,10 @@ import 'package:example/app/ui/book_validators_expandable_item_view.dart';
 import 'package:example/features/book/module.dart';
 import 'package:example/user/user_component.dart';
 
-class BooksComponent extends SubComponent {
+class BookComponent extends SubComponent {
   static var counter = 0;
 
-  BooksComponent(
+  BookComponent(
     UserComponent userComponent, {
     BookValidators bookValidators,
     BookDB book,

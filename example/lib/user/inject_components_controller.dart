@@ -1,21 +1,20 @@
-import 'package:example/app/bootstrap/titanium_app.dart';
 import 'package:example/features/book/component.dart';
-import 'package:routex/routex.dart';
 import 'package:kohana/kohana.dart';
+import 'package:routex/routex.dart';
 
-class InjectComponentsController implements BaseController {
+class InjectComponentsController implements Controller {
   @override
   void bindRouter(Router router) {
     /// mounted on subRouter, available on "/app/*"
-    router.route("/*").handler(TitaniumApp.userComponent.asHandler());
+    router.route("/*").handler(TitaniumApp.appSubComponent.asHandler());
 
-    router.route("/books/*").handler(_createDetailsComponentHandler());
+    router.route("/books/*").handler(_bookComponentHandler());
   }
 }
 
-_createDetailsComponentHandler() => CreateComponentHandler(
-      factory: (context) async => BooksComponent(
-        TitaniumApp.userComponent,
+_bookComponentHandler() => CreateComponentHandler(
+      factory: (context) async => BookComponent(
+        context.getComponent(),
         bookValidators: context.getParam("validators"),
         book: context.getParam("book"),
       ),

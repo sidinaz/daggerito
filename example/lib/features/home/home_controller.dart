@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:routex/routex.dart';
 import 'package:kohana/kohana.dart';
 
-class HomeController extends BaseController {
+class HomeController extends Controller {
   @override
   void bindRouter(Router router) {
     router.route("/home").handler(homeHandler);
