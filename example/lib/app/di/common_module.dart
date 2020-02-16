@@ -5,6 +5,7 @@ import 'package:example/app/locale/i18n.dart';
 import 'package:example/app/theme/theme_manager.dart';
 import 'package:example/app/util/clock.dart';
 import 'package:example/app/util/default_shared_preferences.dart';
+import 'package:kohana/kohana.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CommonModule implements Module {

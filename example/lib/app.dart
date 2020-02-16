@@ -15,8 +15,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:kohana/kohana.dart';
 
-import 'app/database/model/user_info.dart';
-
 // ignore: must_be_immutable
 class App extends BaseView with TitaniumApp<AppComponent> {
   static const appName = 'Daggerito example app';
@@ -98,21 +96,29 @@ class App extends BaseView with TitaniumApp<AppComponent> {
 
   @override
   void onAppComponentCreated(AppComponent appComponent) {
-    disposeBag.addAll([
-      appComponent<AppRepository>().getUserInfo().listen(
-            (userInfo) => createUserComponent(userInfo),
-            onError: userIsMissingError,
-          ),
-    ]);
+    createUserComponent(appComponent);
   }
 
-  void createUserComponent(UserInfo userInfo) {
-    final userComponent = UserComponent(
-      appComponent: fields.appComponent,
-      userInfo: userInfo,
-    );
-    fields.appSubComponent = userComponent;
-    startApplication();
+  @override
+  void restartApplication() {
+    super.restartApplication();
+    createUserComponent(fields.appComponent);
+  }
+
+  void createUserComponent(AppComponent appComponent) {
+    disposeBag.addAll([
+      appComponent<AppRepository>().getUserInfo().listen(
+        (userInfo) {
+          final userComponent = UserComponent(
+            appComponent: fields.appComponent,
+            userInfo: userInfo,
+          );
+          fields.appSubComponent = userComponent;
+          startApplication();
+        },
+        onError: userIsMissingError,
+      ),
+    ]);
   }
 
   void userIsMissingError(Object error) {

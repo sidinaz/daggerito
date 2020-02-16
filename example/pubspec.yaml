@@ -23,7 +23,9 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  kohana:  ^1.0.2
+#  kohana:  ^1.0.2
+  kohana:
+    path: /Users/siddik/dart/kohana
   routex: ^1.0.9
   daggerito: ^1.0.5
   rxdart: ^0.23.1
