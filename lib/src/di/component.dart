@@ -2,17 +2,19 @@ import 'package:daggerito/daggerito.dart';
 
 import '../dependency_container.dart';
 
-abstract class Component {
+class Component {
   final DependencyContainer container;
 
   Component({
     List<Module> modules = const [],
     bool silent,
-  }) : this.container = DependencyContainer(
-          silent: silent,
-        ) {
+    DependencyContainer container,
+  }) : this.container = container ??
+            DependencyContainer(
+              silent: silent,
+            ) {
     modules.forEach(
-      (module) => module.register(container),
+      (module) => module.register(this.container),
     );
   }
 

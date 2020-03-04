@@ -1,19 +1,23 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:daggerito/daggerito.dart';
+import 'package:test/test.dart';
 
-import 'example/components.dart';
 import 'example/models.dart';
 import 'example/modules.dart';
 
 void main() {
   test('Components collaboration test', () {
-    var aComponent = AComponent([AModule(), BModule(), CModule()]);
-    var bComponent = BSubComponent(aComponent, [DModule(), EModule()]);
-    var cComponent = CComponent([FModule(), GModule()]);
-    var dComponent =
-        DSubComponent([bComponent, cComponent], [HModule(), IModule()]);
+    var aComponent = Component(modules: [AModule(), BModule(), CModule()]);
+    var bComponent = SubComponent(aComponent, modules: [DModule(), EModule()]);
+    var cComponent = SubComponent(bComponent, modules: [FModule(), GModule()]);
+    var dComponent = SubComponent(cComponent, modules: [HModule(), IModule()]);
 
     //Component is dart callable class, same as component.container.resolve()
-    H1 model = dComponent();
-    expect(model != null, isTrue);
+    var hasModel = dComponent.container.has<H1>();
+    expect(hasModel, isTrue);
+    expect(aComponent.container.has<F1>("t1"), isFalse);
+    expect(bComponent.container.has<F1>("t1"), isFalse);
+    expect(cComponent.container.has<F1>("t1"), isTrue);
+    expect(dComponent.container.has<F1>("t1"), isTrue);
+    print(dComponent.container.definitions);
   });
 }

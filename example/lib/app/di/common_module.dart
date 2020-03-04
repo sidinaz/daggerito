@@ -18,7 +18,7 @@ class CommonModule implements Module {
     container.register((_) => _sharedPreferences);
     container.register(($) => DefaultSharedPreferences($()));
     container.registerSingleton((_) => AppDb());
-    container.register((_) => SystemClock() as Clock);
+    container.register((_) => SystemClock(), as: Clock);
     container.register(($) => AppRepository($(), $()));
     container.registerSingleton(($) => ThemeManager());
     container.register((_) => Messages.current);

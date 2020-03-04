@@ -22,19 +22,21 @@ class DependencyContainer {
   void clear() => definitions.clear();
 
   /// Use a tag in case you need to register multiple factories fo the same type, to differentiate them.
-  void setDefinition<T>(String tag, Definition<T> definition) {
+  void setDefinition<T>(String tag, Definition<T> definition, [Type _as]) {
+    _as ??= T;
     assert(
       silent ||
-          (!definitions.containsKey(tag) || !definitions[tag].containsKey(T)),
-      assertRegisterMessage<T>('already', tag),
+          (!definitions.containsKey(tag) || !definitions[tag].containsKey(_as)),
+      assertRegisterMessage<T>('already', tag, _as),
     );
 
-    definitions.putIfAbsent(tag, () => Map<Type, Definition<Object>>())[T] =
+    definitions.putIfAbsent(tag, () => Map<Type, Definition<Object>>())[_as] =
         definition;
   }
 
-  String assertRegisterMessage<T>(String word, String tag) {
-    return 'The type $T was $word registered${tag == null ? '' : ' for the tag $tag'}';
+  String assertRegisterMessage<T>(String word, String tag, [Type _as]) {
+    _as ??= T;
+    return 'The type $_as was $word registered${tag == null ? '' : ' for the tag $tag'}';
   }
 
   /// Adds collaborating containers.
@@ -53,8 +55,9 @@ class DependencyContainer {
   void registerInstance<S, T extends S>(
     S instance, {
     String tag,
+    Type as,
   }) {
-    setDefinition(tag, Definition<S>.instance(instance));
+    setDefinition(tag, Definition<S>.instance(instance), as);
   }
 
   /// Registers a factory into the container.
@@ -68,8 +71,9 @@ class DependencyContainer {
   void register<S, T extends S>(
     Factory<S> factory, {
     String tag,
+    Type as,
   }) {
-    setDefinition(tag, Definition<S>.factory(factory));
+    setDefinition(tag, Definition<S>.factory(factory), as);
   }
 
   /// Registers a factory that will be called only only when
@@ -84,8 +88,9 @@ class DependencyContainer {
   void registerSingleton<S, T extends S>(
     Factory<S> factory, {
     String tag,
+    Type as,
   }) {
-    setDefinition(tag, Definition<S>.singleton(factory));
+    setDefinition(tag, Definition<S>.singleton(factory), as);
   }
 
   void unregister<T>([String tag]) {
@@ -136,6 +141,40 @@ class DependencyContainer {
           tag,
         ));
     return value;
+  }
+
+  /// Check for a definition of an instance of requested type.
+  bool has<T>([String tag]) => _has<T>(
+        [this, ...this.collaborators],
+        tag,
+      );
+
+  bool _has<T>(
+    List<DependencyContainer> containers, [
+    String tag,
+    bool found,
+  ]) {
+    if (containers.length == 0) return null;
+
+    bool _found = found;
+
+    containers.forEach((dependencyContainer) {
+      Map<Type, Definition<Object>> definitions =
+          dependencyContainer.definitions[tag];
+
+      final collaborators = dependencyContainer.collaborators;
+      if (definitions != null && _found == null) {
+        if (definitions?.containsKey(T) ?? false) {
+          _found = true;
+        }
+      }
+
+      if (!(_found ?? false)) {
+        _found = _has<T>(collaborators, tag, _found);
+      }
+    });
+
+    return _found ?? false;
   }
 
   /// Resolve an instance of requested type.

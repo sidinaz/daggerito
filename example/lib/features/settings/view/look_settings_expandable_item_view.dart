@@ -21,7 +21,6 @@ class ThemeSettingsExpandableItemView extends SettingExpandableItemView<LookGC> 
         onSuccess: (ctx, model) => Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
             Observer<int>(
               stream: asStream().map(($) => $.theme),
               onSuccess: (ctx, value) => buildOptions(value),

@@ -12,9 +12,7 @@ class BookComponent extends SubComponent {
     BookValidators bookValidators,
     BookDB book,
   }) : super(
-          [
-            userComponent,
-          ],
+          userComponent,
           modules: [
             BooksModule(
               bookValidators: bookValidators,

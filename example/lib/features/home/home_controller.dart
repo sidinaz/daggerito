@@ -1,3 +1,4 @@
+import 'package:example/features/debug/view/json_view.dart';
 import 'package:example/features/debug/view/view.dart';
 import 'package:flutter/material.dart';
 import 'package:routex/routex.dart';
@@ -8,6 +9,7 @@ class HomeController extends Controller {
   void bindRouter(Router router) {
     router.route("/home").handler(homeHandler);
     router.route("/debug").handler(debugHandler);
+    router.route("/json").handler(jsonHandler);
   }
 
   WidgetBuilder homeHandler(RoutingContext context) =>
@@ -15,4 +17,7 @@ class HomeController extends Controller {
 
   WidgetBuilder debugHandler(RoutingContext context) =>
       (_) => context<DebugView>();
+
+  WidgetBuilder jsonHandler(RoutingContext context) =>
+      (_) => context<JsonView>();
 }

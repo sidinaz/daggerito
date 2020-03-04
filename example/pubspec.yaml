@@ -25,7 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   kohana:  ^1.0.3
   routex: ^1.0.9
-  daggerito: ^1.0.5
+  daggerito: ^1.0.6
   rxdart: ^0.23.1
   flutter_platform_widgets: ^0.32.4
   flutter_hooks: ^0.7.0
@@ -36,6 +36,7 @@ dependencies:
   flutter_localizations:
     path: ./vendor/flutter_localizations/
   shared_preferences: ^0.5.6
+  json_table:
 
 dev_dependencies:
   flutter_test:

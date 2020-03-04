@@ -19,15 +19,19 @@ import 'example/modules.dart';
 
 void main() {
   test('Components collaboration test', () {
-    var aComponent = AComponent([AModule(), BModule(), CModule()]);
-    var bComponent = BSubComponent(aComponent, [DModule(), EModule()]);
-    var cComponent = CComponent([FModule(), GModule()]);
-    var dComponent =
-        DSubComponent([bComponent, cComponent], [HModule(), IModule()]);
+    var aComponent = Component(modules: [AModule(), BModule(), CModule()]);
+    var bComponent = SubComponent(aComponent, modules: [DModule(), EModule()]);
+    var cComponent = SubComponent(bComponent, modules: [FModule(), GModule()]);
+    var dComponent = SubComponent(cComponent, modules: [HModule(), IModule()]);
 
     //Component is dart callable class, same as component.container.resolve()
-    H1 model = dComponent();
-    expect(model != null, isTrue);
+    var hasModel = dComponent.container.has<H1>();
+    expect(hasModel, isTrue);
+    expect(aComponent.container.has<F1>("t1"), isFalse);
+    expect(bComponent.container.has<F1>("t1"), isFalse);
+    expect(cComponent.container.has<F1>("t1"), isTrue);
+    expect(dComponent.container.has<F1>("t1"), isTrue);
+    print(dComponent.container.definitions);
   });
 }
 ```
@@ -37,27 +41,6 @@ class HModule implements Module {
   void register(DependencyContainer container) {
     container.register(($) => H1($(), $(), $(), $("t1"), $("t2"), $(), $()));
     container.register(($) => H2());
-  }
-}
-
-class DSubComponent extends SubComponent {
-  DSubComponent(
-    List<Component> components,
-    List<Module> modules,
-  ) : super(components, modules: modules);
-}
-
-class H1 {
-  H1(A2 model1, B1 model2, D1 model3, F1 model4, F1 model5, H2 model6,
-      I2 model7) {
-    assert(model1 != null);
-    assert(model2 != null);
-    assert(model3 != null);
-    assert(model4 != null);
-    assert(model5 != null);
-    assert(model6 != null);
-    assert(model7 != null);
-    assert(model4.description != model5.description);
   }
 }
 ```  
@@ -78,4 +61,12 @@ Daggerito.configure(silent: true);
           ],
           silent: true,
         )
+```  
+### Tips 
+```dart
+// When silent mode is off (default) use has to check for type availability.  
+if(container.has<H1>())...
+
+// Register as defined type
+container.register((_) => SystemClock(), as: Clock);
 ```  

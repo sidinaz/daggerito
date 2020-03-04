@@ -8,16 +8,18 @@ import 'package:flutter/material.dart';
 
 class UserComponent extends SubComponent {
   static var counter = 0;
+
   UserComponent({
     @required AppComponent appComponent,
     @required UserInfo userInfo,
-  }) : super([
+  }) : super(
           appComponent,
-        ], modules: [
-          UserModule(userInfo.userEntity),
-          UserUIModule(userInfo: userInfo),
-          HomeModule(),
-        ]){
+          modules: [
+            UserModule(userInfo.userEntity),
+            UserUIModule(userInfo: userInfo),
+            HomeModule(),
+          ],
+        ) {
     counter++;
   }
 }

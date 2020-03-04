@@ -14,16 +14,19 @@ class MinimalApp extends BaseView with TitaniumApp<ExampleComponent> {
           );
 
   @override
-  RouterBinder get binder => RouterBinder([
-        RouterBindable(
-          before: (router) {
-            router.route("/*").handler(
-                  TitaniumApp.appComponent.asHandler(),
-                );
-            router.route("/").handler(homeViewHandler);
-          },
-        ),
-      ], routerFactory);
+  RouterBinder get binder => RouterBinder(
+        [
+          RouterBindable(
+            before: (router) {
+              router.route("/*").handler(
+                    TitaniumApp.appComponent.asHandler(),
+                  );
+              router.route("/").handler(homeViewHandler);
+            },
+          ),
+        ],
+        routerFactory,
+      );
 
   @override
   Widget buildWidget(BuildContext context) => isReady

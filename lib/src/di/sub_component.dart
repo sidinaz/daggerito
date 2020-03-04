@@ -1,17 +1,19 @@
+import 'package:daggerito/daggerito.dart';
+
 import 'component.dart';
 import 'module.dart';
 
-abstract class SubComponent extends Component {
+class SubComponent extends Component {
   SubComponent(
-    List<Component> components, {
+    Component parentComponent, {
     List<Module> modules = const [],
     bool silent,
+    DependencyContainer container,
   }) : super(
           modules: modules,
           silent: silent,
+          container: container,
         ) {
-    container.collaborate(
-      components.map((c) => c.container).toList(),
-    );
+    this.container.collaborate([parentComponent.container]);
   }
 }

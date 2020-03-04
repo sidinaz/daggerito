@@ -1,5 +1,6 @@
 import 'package:daggerito/daggerito.dart';
 import 'package:example/app/database/model/user_info.dart';
+import 'package:example/features/debug/view/json_view.dart';
 import 'package:example/features/debug/view/user_info_alert.dart';
 import 'package:example/features/debug/view/view.dart';
 import 'package:example/features/home/view/home_view.dart';
@@ -20,6 +21,7 @@ class HomeModule implements Module {
     container.register(provideDrawerWidgetBuilder);
     container.registerSingleton((_) => TabsHelper());
     container.register(($) => DebugView($(), $(),$()));
+    container.register(($) => JsonView($(), $(),$()));
   }
 
   WidgetBuilder provideDrawerWidgetBuilder(DependencyContainer $) =>

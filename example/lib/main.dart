@@ -17,6 +17,7 @@ void main() {
 //        "/public/debug",
         "/app/home",
 //        "/app/debug",
+//        "/app/json",
 //        "/app/books/",
 //        "/app/books/add",
 //        "/app/books/edit",
