@@ -110,7 +110,7 @@ class DependencyContainer {
     String tag,
     bool found,
   ]) {
-    if (containers.length == 0) return null;
+    if (containers.isEmpty) return null;
 
     T value;
     bool _found = found;
@@ -131,7 +131,7 @@ class DependencyContainer {
       if (!(_found ?? false)) {
         value = _resolve(collaborators, tag, _found);
       }
-      condition = _found ?? false || silent || collaborators.length > 0;
+      condition = _found ?? false || silent || collaborators.isNotEmpty;
     });
 
     assert(
@@ -154,7 +154,7 @@ class DependencyContainer {
     String tag,
     bool found,
   ]) {
-    if (containers.length == 0) return null;
+    if (containers.isEmpty) return null;
 
     bool _found = found;
 
