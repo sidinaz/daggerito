@@ -36,13 +36,11 @@ class HomeViewWithTabs extends BaseView with CheckPlatformMixin {
             ),
             Observer(
               stream: fields.selectedTab,
-              onSuccess: (context, selectedTab) =>                 PlatformNavBar(
+              onSuccess: (context, selectedTab) => PlatformNavBar(
                 items: _tabsHelper.items(context),
                 currentIndex: selectedTab,
                 itemChanged: _onItemTapped,
               ),
-
-
             )
           ],
         ),
